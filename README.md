@@ -37,7 +37,7 @@
 
 ### **Monorepo Structure**
 ```
-que-entertainment-app/
+que/
 ├── apps/
 │   ├── backend/          # NestJS API server
 │   ├── web/             # React web application  
@@ -49,7 +49,7 @@ que-entertainment-app/
 ```
 
 ### **Technology Stack**
-- **Backend**: NestJS, PostgreSQL, TypeORM, Socket.io, JWT
+- **Backend**: NestJS, PostgreSQL, Prisma, Socket.io, JWT
 - **Web Frontend**: React, TypeScript, React Router, Axios
 - **Mobile**: React Native (Expo), TypeScript, React Navigation
 - **Real-time**: WebSockets (Socket.io) for live features
@@ -66,7 +66,7 @@ que-entertainment-app/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-org/que-entertainment-app.git
+   git clone https://github.com/your-org/que
    cd que-entertainment-app
    ```
 
@@ -180,34 +180,6 @@ npm run test:coverage
 # Run E2E tests
 npm run test:e2e
 ```
-
-## 🚢 Deployment
-
-### **Production Deployment**
-- **Backend**: Railway/DigitalOcean
-- **Frontend**: Vercel/Netlify
-- **Database**: PostgreSQL on cloud provider
-- **Mobile**: App Store & Google Play Store
-
-See [Deployment Guide](./docs/deployment/README.md) for detailed instructions.
-
-## 📊 Project Status
-
-### **Current Phase**: Foundation & Core Features
-- ✅ Project setup and architecture
-- ✅ User authentication system
-- 🔄 Content integration (TMDB API)
-- 🔄 Basic watchlist functionality
-- ⏳ Mobile app development
-- ⏳ Social features
-- ⏳ Watch party implementation
-
-### **Roadmap**
-- **Phase 1** (Weeks 1-4): MVP Backend & Frontend
-- **Phase 2** (Weeks 5-8): Mobile App & Core Features  
-- **Phase 3** (Weeks 9-12): Social Features
-- **Phase 4** (Weeks 13-16): Watch Parties
-- **Phase 5** (Weeks 17-20): Polish & Production Launch
 
 ## 📄 License
 
