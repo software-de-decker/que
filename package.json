@@ -7,7 +7,13 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:web\" \"npm run dev:mobile\"",
+    "dev:web": "cd apps/web && npm run dev",
+    "dev:backend": "cd apps/backend && npm run start:dev",
+    "dev:mobile": "cd apps/mobile && npm run start",
+    "build": "npm run build:backend && npm run build:web",
+    "build:web": "cd apps/web && npm run build",
+    "build:backend": "cd apps/backend && npm run build"
   },
   "repository": {
     "type": "git",
