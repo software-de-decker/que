@@ -1,6 +1,4 @@
-import type { NextConfig } from 'next'
-
-const nextConfig: NextConfig = {
+const nextConfig = {
     // Enable experimental features for better monorepo support
     experimental: {
         // Allow importing from parent directories (for shared packages)
