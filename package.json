@@ -1,30 +1,34 @@
 {
   "name": "que",
   "version": "1.0.0",
-  "description": "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/) [![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)](https://reactjs.org/) [![NestJS](https://img.shields.io/badge/NestJS-E0234E?logo=nestjs&logoColor=white)](https://nestjs.com/)",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
+  "description": "Entertainment watchlist platform with social features",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:web\" \"npm run dev:mobile\"",
-    "dev:web": "cd apps/web && npm run dev",
-    "dev:backend": "cd apps/backend && npm run start:dev",
-    "dev:mobile": "cd apps/mobile && npm run start",
-    "build": "npm run build:backend && npm run build:web",
-    "build:web": "cd apps/web && npm run build",
-    "build:backend": "cd apps/backend && npm run build"
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:web\"",
+    "dev:backend": "npm run start:dev --workspace=apps/backend",
+    "dev:web": "npm start --workspace=apps/web",
+    "dev:mobile": "npm start --workspace=apps/mobile",
+    "build": "npm run build --workspace=apps/backend && npm run build --workspace=apps/web",
+    "build:backend": "npm run build --workspace=apps/backend",
+    "build:web": "npm run build --workspace=apps/web",
+    "build:mobile": "npm run build --workspace=apps/mobile",
+    "test": "npm run test --workspace=apps/backend && npm run test --workspace=apps/web",
+    "lint": "npm run lint --workspace=apps/backend && npm run lint --workspace=apps/web",
+    "install:all": "npm install && npm install --workspace=apps/backend && npm install --workspace=apps/web && npm install --workspace=apps/mobile",
+    "db:generate": "npm run db:generate --workspace=apps/backend",
+    "db:push": "npm run db:push --workspace=apps/backend",
+    "db:migrate": "npm run db:migrate --workspace=apps/backend",
+    "db:studio": "npm run db:studio --workspace=apps/backend"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/software-de-decker/que.git"
+  "devDependencies": {
+    "concurrently": "8.2.2"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/software-de-decker/que/issues"
-  },
-  "homepage": "https://github.com/software-de-decker/que#readme"
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
 }
