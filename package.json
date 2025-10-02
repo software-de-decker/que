@@ -9,20 +9,18 @@
   ],
   "scripts": {
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:web\"",
-    "dev:backend": "npm run start:dev --workspace=apps/backend",
-    "dev:web": "npm start --workspace=apps/web",
+    "dev:backend": "npm run start:dev --workspace=backend",
+    "dev:web": "npm run dev --workspace=@que/web",
     "dev:mobile": "npm start --workspace=apps/mobile",
-    "build": "npm run build --workspace=apps/backend && npm run build --workspace=apps/web",
-    "build:backend": "npm run build --workspace=apps/backend",
-    "build:web": "npm run build --workspace=apps/web",
-    "build:mobile": "npm run build --workspace=apps/mobile",
-    "test": "npm run test --workspace=apps/backend && npm run test --workspace=apps/web",
-    "lint": "npm run lint --workspace=apps/backend && npm run lint --workspace=apps/web",
-    "install:all": "npm install && npm install --workspace=apps/backend && npm install --workspace=apps/web && npm install --workspace=apps/mobile",
-    "db:generate": "npm run db:generate --workspace=apps/backend",
-    "db:push": "npm run db:push --workspace=apps/backend",
-    "db:migrate": "npm run db:migrate --workspace=apps/backend",
-    "db:studio": "npm run db:studio --workspace=apps/backend"
+    "build": "npm run build --workspaces --if-present",
+    "build:backend": "npm run build --workspace=backend",
+    "build:web": "npm run build --workspace=@que/web",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "db:generate": "npm run db:generate --workspace=backend",
+    "db:push": "npm run db:push --workspace=backend",
+    "db:migrate": "npm run db:migrate --workspace=backend",
+    "db:studio": "npm run db:studio --workspace=backend"
   },
   "devDependencies": {
     "concurrently": "8.2.2"
