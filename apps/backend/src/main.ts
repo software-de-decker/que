@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import {INestApplication, ValidationPipe} from '@nestjs/common';
+import { INestApplication, ValidationPipe } from '@nestjs/common';
 
 async function bootstrap(): Promise<void> {
     const app: INestApplication = await NestFactory.create(AppModule);
@@ -12,14 +12,19 @@ async function bootstrap(): Promise<void> {
     });
 
     // Enable validation pipes globally
-    app.useGlobalPipes(new ValidationPipe({
-        whitelist: true,
-        forbidNonWhitelisted: true,
-        transform: true,
-    }));
+    app.useGlobalPipes(
+        new ValidationPipe({
+            whitelist: true,
+            forbidNonWhitelisted: true,
+            transform: true,
+        })
+    );
 
     const port: string | 3001 = process.env.PORT || 3001;
     await app.listen(port);
     console.log(`🚀 Backend running on http://localhost:${port}`);
 }
-bootstrap();
+bootstrap().catch((error: any): void => {
+    console.error('Failed to start application: ', error);
+    process.exit(1);
+});

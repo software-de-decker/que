@@ -1,0 +1,100 @@
+name: Web CI
+
+on:
+  push:
+    branches:
+      - main
+      - 'fe/**'
+      - 'all/**'
+    paths:
+      - 'apps/web/**'
+      - 'packages/shared/**'
+      - 'packages/ui/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/web-ci.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'apps/web/**'
+      - 'packages/shared/**'
+      - 'packages/ui/**'
+      - 'package.json'
+      - 'package-lock.json'
+
+jobs:
+  lint-and-format:
+    name: Lint & Format Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.19.5'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint:web
+
+      - name: Check formatting
+        run: npm run format:web
+
+#  test:
+#    name: Run Tests
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v4
+#
+#      - name: Setup Node.js
+#        uses: actions/setup-node@v4
+#        with:
+#          node-version: '20.19.5'
+#          cache: 'npm'
+#
+#      - name: Install dependencies
+#        run: npm ci
+#
+#      - name: Run tests
+#        run: npm run test:web
+#        env:
+#          CI: true
+
+  build:
+    name: Build Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.19.5'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build web app
+        run: npm run build --workspace=apps/web
+        env:
+          CI: true
+
+      - name: Check build output
+        run: |
+          if [ ! -d "apps/web/.next" ]; then
+            echo "Build failed: .next directory not found"
+            exit 1
+          fi
+          echo "✅ Build successful"
