@@ -10,24 +10,28 @@
 ## ✨ Features
 
 ### 🎯 **Personal Tracking**
+
 - **Smart Watchlists**: Multiple custom lists with tags and categories
 - **Progress Tracking**: Episode-by-episode progress with visual indicators
 - **Rating System**: Rate shows, seasons, episodes, and sports events
 - **Analytics Dashboard**: Viewing statistics and personalized insights
 
 ### 👥 **Social Features**
+
 - **Friend System**: Connect with friends and follow their viewing activity
 - **Activity Feed**: Real-time updates on friends' progress and ratings
 - **Social Reviews**: Share thoughts and discuss content with friends
 - **Spoiler Protection**: Configurable filters based on viewing progress
 
 ### 🎉 **Watch Parties**
+
 - **Synchronized Viewing**: "Press play together" coordination system
 - **Real-time Chat**: Live discussion during viewing sessions
 - **Multi-platform Support**: Works with any streaming service
 - **Group Management**: Create and manage viewing groups
 
 ### 🔍 **Content Discovery**
+
 - **Advanced Search**: Filter by genre, platform, rating, release year
 - **Personalized Recommendations**: AI-powered suggestions
 - **Trending Content**: Popular shows and upcoming releases
@@ -36,11 +40,12 @@
 ## 🏗️ Architecture
 
 ### **Monorepo Structure**
+
 ```
 que/
 ├── apps/
 │   ├── backend/          # NestJS API server
-│   ├── web/             # React web application  
+│   ├── web/             # React web application
 │   └── mobile/          # React Native/Expo app
 ├── packages/
 │   ├── shared/          # Shared TypeScript types
@@ -49,6 +54,7 @@ que/
 ```
 
 ### **Technology Stack**
+
 - **Backend**: NestJS, PostgreSQL, Prisma, Socket.io, JWT
 - **Web Frontend**: React, TypeScript, React Router, Axios
 - **Mobile**: React Native (Expo), TypeScript, React Navigation
@@ -58,6 +64,7 @@ que/
 ## 🚀 Quick Start
 
 ### **Prerequisites**
+
 - Node.js 18+ and npm
 - PostgreSQL 14+
 - Git
@@ -65,33 +72,38 @@ que/
 ### **Installation**
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/your-org/que
    cd que-entertainment-app
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Environment setup**
+
    ```bash
    cp .env.example .env
    # Edit .env with your configuration
    ```
 
 4. **Database setup**
+
    ```bash
    # Start PostgreSQL service
    npm run db:setup
    ```
 
 5. **Start development servers**
+
    ```bash
    # Start all applications in development mode
    npm run dev
-   
+
    # Or start individually:
    npm run dev:backend    # API server on :3001
    npm run dev:web       # Web app on :3000
@@ -99,6 +111,7 @@ que/
    ```
 
 ### **Development Workflow**
+
 - Web app: http://localhost:3000
 - API server: http://localhost:3001
 - API docs: http://localhost:3001/docs
@@ -115,11 +128,12 @@ que/
 ## 🛠️ Development
 
 ### **Available Scripts**
+
 ```bash
 # Development
 npm run dev              # Start all apps in development
 npm run dev:backend      # Start NestJS backend only
-npm run dev:web         # Start React web app only  
+npm run dev:web         # Start React web app only
 npm run dev:mobile      # Start Expo mobile app
 
 # Building
@@ -143,6 +157,7 @@ npm run format        # Format all code with Prettier
 ```
 
 ### **Project Management**
+
 - **GitHub Projects**: [View Kanban Board](https://github.com/orgs/your-org/projects/1)
 - **Issues**: [Current Sprint](https://github.com/your-org/que-entertainment-app/issues)
 - **Milestones**: [Development Roadmap](https://github.com/your-org/que-entertainment-app/milestones)
@@ -152,6 +167,7 @@ npm run format        # Format all code with Prettier
 We welcome contributions! Please see our [Contributing Guide](./CONTRIBUTING.md) for details.
 
 ### **Development Process**
+
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
 3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
@@ -159,9 +175,11 @@ We welcome contributions! Please see our [Contributing Guide](./CONTRIBUTING.md)
 5. Open a Pull Request
 
 ### **Commit Convention**
+
 We use [Conventional Commits](https://www.conventionalcommits.org/):
+
 - `feat:` - New features
-- `fix:` - Bug fixes  
+- `fix:` - Bug fixes
 - `docs:` - Documentation changes
 - `style:` - Code style changes (formatting, etc.)
 - `refactor:` - Code refactoring

@@ -9,7 +9,9 @@
 ## Quick Start
 
 1. **Clone and setup:**
+
 ```bash
    git clone https://github.com/software-de-decker/que.git
    cd que
    ./tools/scripts/setup.sh
+```

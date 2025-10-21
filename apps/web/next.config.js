@@ -7,10 +7,8 @@ const nextConfig = {
 
     // Environment variables
     env: {
-        NEXT_PUBLIC_API_URL:
-            process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001',
-        NEXT_PUBLIC_WS_URL:
-            process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:3001',
+        NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001',
+        NEXT_PUBLIC_WS_URL: process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:3001',
     },
 
     // Webpack configuration for monorepo
@@ -19,10 +17,10 @@ const nextConfig = {
         config.resolve.fallback = {
             ...config.resolve.fallback,
             fs: false,
-        }
+        };
 
-        return config
+        return config;
     },
-}
+};
 
-export default nextConfig
+export default nextConfig;

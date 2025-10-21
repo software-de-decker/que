@@ -13,18 +13,22 @@ Three workflow files have been created for your `.github/workflows/` directory:
 ## ✅ Workflow Features
 
 ### All Workflows Include:
+
 - ✨ **Smart Triggers**: Run only on relevant branches and file changes
 - 🚀 **Parallel Jobs**: Lint, test, and build run simultaneously
 - 💾 **Dependency Caching**: Faster runs using npm cache
 - 🎯 **Branch-aware**: Trigger on your branch naming convention
 
 ### Branch Triggers:
+
 - **Backend**: `be/*`, `all/*`, and `main`
 - **Web**: `fe/*`, `all/*`, and `main`
 - **Mobile**: `app/*`, `all/*`, and `main`
 
 ### Path Triggers:
+
 Each workflow only runs when relevant files change:
+
 - App-specific directories (`apps/backend/**`, etc.)
 - Shared packages (`packages/shared/**`)
 - Root package files
@@ -35,14 +39,12 @@ Each workflow only runs when relevant files change:
 ## 📋 Required Package.json Scripts
 
 ### Root `package.json` (already has workspaces)
+
 ```json
 {
   "name": "que",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
+  "workspaces": ["apps/*", "packages/*"],
   "scripts": {
     "dev": "npm run dev --workspaces",
     "build": "npm run build --workspaces",
@@ -55,7 +57,9 @@ Each workflow only runs when relevant files change:
 ```
 
 ### Backend `apps/backend/package.json`
+
 Add these scripts if they don't exist:
+
 ```json
 {
   "scripts": {
@@ -76,7 +80,9 @@ Add these scripts if they don't exist:
 ```
 
 ### Web `apps/web/package.json`
+
 Add these scripts if they don't exist:
+
 ```json
 {
   "scripts": {
@@ -95,6 +101,7 @@ Add these scripts if they don't exist:
 ```
 
 **Note**: If using Create React App instead of Vite:
+
 ```json
 {
   "scripts": {
@@ -107,7 +114,9 @@ Add these scripts if they don't exist:
 ```
 
 ### Mobile `apps/mobile/package.json` (future)
+
 Add these when mobile app is initialized:
+
 ```json
 {
   "scripts": {
@@ -132,20 +141,25 @@ Add these when mobile app is initialized:
 ## 🔧 Installation Steps
 
 ### 1. Create Workflow Directory
+
 ```bash
 mkdir -p .github/workflows
 ```
 
 ### 2. Add Workflow Files
+
 Copy the three YAML files into `.github/workflows/`:
+
 - `backend-ci.yml`
 - `web-ci.yml`
 - `mobile-ci.yml`
 
 ### 3. Verify Package Scripts
+
 Check that your `package.json` files have the required scripts listed above.
 
 ### 4. Commit and Push
+
 ```bash
 git add .github/workflows/
 git commit -m "ci: add GitHub Actions workflows for backend and web"
@@ -157,6 +171,7 @@ git push origin main
 ## 🎯 Testing the Workflows
 
 ### Test Backend CI
+
 ```bash
 git checkout -b be/123-test-workflow
 # Make a change to apps/backend/src/main.ts
@@ -166,6 +181,7 @@ git push origin be/123-test-workflow
 ```
 
 ### Test Web CI
+
 ```bash
 git checkout -b fe/124-test-workflow
 # Make a change to apps/web/src/App.tsx
@@ -175,6 +191,7 @@ git push origin fe/124-test-workflow
 ```
 
 ### Test All Workflows
+
 ```bash
 git checkout -b all/125-test-all-workflows
 # Make changes to both apps
@@ -210,12 +227,15 @@ Add these badges to your README.md to show CI status:
 ## ⚙️ Workflow Configuration Notes
 
 ### Caching Strategy
+
 - Uses `actions/setup-node@v4` with built-in npm caching
 - Caches `node_modules` based on `package-lock.json`
 - Significantly speeds up subsequent runs
 
 ### Continue on Error
+
 Some steps have `continue-on-error: true`:
+
 - E2E tests (might not exist yet)
 - Coverage tests (might not be configured)
 - Expo token setup (for mobile)
@@ -223,7 +243,9 @@ Some steps have `continue-on-error: true`:
 These won't fail the workflow if they're not set up yet.
 
 ### Environment Variables
+
 Tests run with `CI=true` to:
+
 - Disable watch mode in Jest
 - Enable CI-specific test behaviors
 - Ensure non-interactive test runs
@@ -237,29 +259,32 @@ Set up branch protection for `main`:
 1. Go to **Settings** → **Branches**
 2. Add rule for `main`
 3. Enable:
-    - ✅ Require status checks to pass
-    - ✅ Require branches to be up to date
-    - Select: `Backend CI / lint-and-format`, `Backend CI / test`, `Backend CI / build`
-    - Select: `Web CI / lint-and-format`, `Web CI / test`, `Web CI / build`
+   - ✅ Require status checks to pass
+   - ✅ Require branches to be up to date
+   - Select: `Backend CI / lint-and-format`, `Backend CI / test`, `Backend CI / build`
+   - Select: `Web CI / lint-and-format`, `Web CI / test`, `Web CI / build`
 4. Enable:
-    - ✅ Require pull request before merging
-    - ✅ Dismiss stale reviews when new commits are pushed
+   - ✅ Require pull request before merging
+   - ✅ Dismiss stale reviews when new commits are pushed
 
 ---
 
 ## 🐛 Troubleshooting
 
 ### Workflow Not Triggering?
+
 - Check branch name matches pattern (`be/*`, `fe/*`, `app/*`, `all/*`)
 - Verify file paths match the `paths:` filter
 - Ensure workflow file is in `.github/workflows/`
 
 ### Build Failing?
+
 - Check that all package.json scripts exist
 - Verify Node version matches (20.19.5)
 - Ensure dependencies are correctly installed locally
 
 ### Script Not Found?
+
 Add missing scripts to the appropriate `package.json` file using the examples above.
 
 ---
